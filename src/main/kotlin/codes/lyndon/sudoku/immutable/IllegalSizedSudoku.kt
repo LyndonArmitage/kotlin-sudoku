@@ -1,4 +1,4 @@
-package codes.lyndon.sudoku
+package codes.lyndon.sudoku.immutable
 
 class IllegalSizedSudoku(
     data: Array<Int?>

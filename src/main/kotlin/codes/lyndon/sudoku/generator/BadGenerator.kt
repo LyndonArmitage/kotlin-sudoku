@@ -1,5 +1,6 @@
 package codes.lyndon.sudoku.generator
 
+import codes.lyndon.sudoku.CellGroup
 import codes.lyndon.sudoku.immutable.ImmutableSudokuGrid
 import codes.lyndon.sudoku.SudokuGenerator
 import codes.lyndon.sudoku.SudokuGrid
@@ -11,7 +12,7 @@ object BadGenerator : SudokuGenerator {
         println(generate())
     }
 
-    override fun generate(): SudokuGrid {
+    override fun generate(): SudokuGrid<CellGroup> {
 
         return ImmutableSudokuGrid.build {
             for (y in 0 until SudokuGrid.cellsPerColumn) {

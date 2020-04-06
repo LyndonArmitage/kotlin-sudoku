@@ -1,16 +1,16 @@
 package codes.lyndon.sudoku
 
-interface SudokuGrid {
+interface SudokuGrid<out CellGroupType : CellGroup> {
 
     fun cellAt(x: Int, y: Int): Int?
 
     operator fun get(x: Int, y: Int): Int? = cellAt(x, y)
 
-    fun boxAt(boxX: Int, boxY: Int): CellGroup
+    fun boxAt(boxX: Int, boxY: Int): CellGroupType
 
-    fun rowAt(y: Int): CellGroup
+    fun rowAt(y: Int): CellGroupType
 
-    fun coulmnAt(x: Int): CellGroup
+    fun coulmnAt(x: Int): CellGroupType
 
     companion object {
         const val cellsPerColumn: Int = 9

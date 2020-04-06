@@ -12,8 +12,8 @@ class BruteForceGenerator(
 
     private data class Pos(val x: Int, val y: Int)
 
-    override fun generate(): SudokuGrid {
-        lateinit var sudoku: SudokuGrid
+    override fun generate(): SudokuGrid<CellGroup> {
+        lateinit var sudoku: SudokuGrid<CellGroup>
         do {
             sudoku = ImmutableSudokuGrid.build {
                 val positions = ArrayList<Pos>(81)

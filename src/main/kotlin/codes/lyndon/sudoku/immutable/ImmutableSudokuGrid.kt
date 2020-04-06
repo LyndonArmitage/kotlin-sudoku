@@ -1,14 +1,13 @@
 package codes.lyndon.sudoku.immutable
 
 import codes.lyndon.sudoku.CellGroup
-import codes.lyndon.sudoku.IllegalSizedSudoku
 import codes.lyndon.sudoku.SudokuCell
 import codes.lyndon.sudoku.SudokuGrid
 import codes.lyndon.sudoku.renderer.BasicTextRenderer
 
 class ImmutableSudokuGrid private constructor(
     grid: Array<Int?>
-) : SudokuGrid {
+) : SudokuGrid<ImmutableCellGroup> {
 
     private val gridData: Array<Int?>
 
@@ -26,7 +25,7 @@ class ImmutableSudokuGrid private constructor(
         return gridData[index]
     }
 
-    override fun boxAt(boxX: Int, boxY: Int): CellGroup {
+    override fun boxAt(boxX: Int, boxY: Int): ImmutableCellGroup {
         val cells = HashSet<SudokuCell>(9)
         val startX: Int = boxX * 3
         val startY: Int = boxY * 3
@@ -38,7 +37,7 @@ class ImmutableSudokuGrid private constructor(
         return ImmutableCellGroup(cells)
     }
 
-    override fun rowAt(y: Int): CellGroup {
+    override fun rowAt(y: Int): ImmutableCellGroup {
         val cells = HashSet<SudokuCell>(SudokuGrid.cellsPerRow)
         for (x in 0 until SudokuGrid.cellsPerRow) {
             cells.add(SudokuCell(x, y, get(x, y)))
@@ -46,7 +45,7 @@ class ImmutableSudokuGrid private constructor(
         return ImmutableCellGroup(cells)
     }
 
-    override fun coulmnAt(x: Int): CellGroup {
+    override fun coulmnAt(x: Int): ImmutableCellGroup {
         val cells = HashSet<SudokuCell>(SudokuGrid.cellsPerColumn)
         for (y in 0 until SudokuGrid.cellsPerColumn) {
             cells.add(SudokuCell(x, y, get(x, y)))
@@ -84,7 +83,7 @@ class ImmutableSudokuGrid private constructor(
         fun builder(gridData: Array<Int?>): Builder =
             Builder(gridData.copyOf())
 
-        fun builder(baseSudoku: SudokuGrid): Builder {
+        fun builder(baseSudoku: SudokuGrid<CellGroup>): Builder {
             val grid = emptyGrid()
             for (x in 0 until SudokuGrid.cellsPerRow) {
                 for (y in 0 until SudokuGrid.cellsPerColumn) {

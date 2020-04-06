@@ -16,7 +16,7 @@ object TestUtils {
         2, 3, 5, 7, 4, 8, 9, 1, 6
     )
 
-    val validSudokuGrid: SudokuGrid =
+    val validSudokuGrid =
         ImmutableSudokuGrid.builder(validSudokuNumbers).build()
 
 }
