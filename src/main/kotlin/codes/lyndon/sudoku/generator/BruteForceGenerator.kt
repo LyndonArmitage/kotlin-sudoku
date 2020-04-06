@@ -1,7 +1,6 @@
 package codes.lyndon.sudoku.generator
 
 import codes.lyndon.sudoku.*
-import codes.lyndon.sudoku.immutable.ImmutableSudokuGrid
 import codes.lyndon.sudoku.mutable.HashMapSudokuGrid
 import java.util.*
 import kotlin.collections.ArrayList
@@ -27,12 +26,27 @@ class BruteForceGenerator(
             val queue = ArrayDeque(positions)
             while (queue.isNotEmpty()) {
                 val pos = queue.last
-                var isValid: Boolean
-                do {
-                    val value = random.nextInt(9) + 1
-                    sudoku[pos.x, pos.y] = value
-                    isValid = sudoku.isValid(mustBeComplete = false)
-                } while (!isValid)
+                val possibleValues = randomOrderedNumbers()
+                val (x, y) = pos
+                possibleValues.removeAll(
+                    sudoku.boxForCellAt(x, y).presentNumbers
+                )
+                possibleValues.removeAll(
+                    sudoku.rowAt(y).presentNumbers
+                )
+                possibleValues.removeAll(
+                    sudoku.coulmnAt(x).presentNumbers
+                )
+                if (possibleValues.isEmpty()) {
+                    // Problem persists that we end up making a lot more
+                    // bad configurations than good here.
+                    // At least we are getting closer though
+                    System.err.println(
+                        "Possible values exhausted for cell $x,$y:\n$sudoku"
+                    )
+                }
+                val value = possibleValues.first()
+                sudoku[pos.x, pos.y] = value
                 queue.removeLast()
             }
 
@@ -44,7 +58,7 @@ class BruteForceGenerator(
         return sudoku
     }
 
-    private fun randomRow(): List<Int> {
+    private fun randomOrderedNumbers(): MutableList<Int> {
         val range = 1..9
         val list = range.asIterable().toMutableList()
         list.shuffle(random)
