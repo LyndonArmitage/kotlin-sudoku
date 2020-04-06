@@ -1,5 +1,6 @@
 package codes.lyndon.sudoku
 
+import codes.lyndon.sudoku.TestUtils.validSudokuGrid
 import codes.lyndon.sudoku.TestUtils.validSudokuNumbers
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
@@ -15,7 +16,7 @@ internal class SudokuReaderTest {
 
         println(sudoku)
 
-        val expectedSudoku = ImmutableSudokuGrid.builder(validSudokuNumbers).build()
+        val expectedSudoku = validSudokuGrid
         assertEquals(expectedSudoku, sudoku)
     }
 }

@@ -138,8 +138,9 @@ class ImmutableSudokuGrid private constructor(
             return this
         }
 
-        operator fun set(x: Int, y: Int, value: Int?) {
+        operator fun set(x: Int, y: Int, value: Int?): Builder {
             setCell(x, y, value)
+            return this
         }
 
         fun build(): ImmutableSudokuGrid = ImmutableSudokuGrid(gridData)
