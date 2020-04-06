@@ -1,26 +1,37 @@
 package codes.lyndon.sudoku.generator
 
-import codes.lyndon.sudoku.ImmutableSudokuGrid
-import codes.lyndon.sudoku.SudokuGenerator
-import codes.lyndon.sudoku.SudokuGrid
-import codes.lyndon.sudoku.isValid
+import codes.lyndon.sudoku.*
+import java.util.*
+import kotlin.collections.ArrayList
 import kotlin.random.Random
 
 class BruteForceGenerator(
     private val random: Random = Random(0L)
 ) : SudokuGenerator {
 
+    private data class Pos(val x: Int, val y: Int)
+
     override fun generate(): SudokuGrid {
         lateinit var sudoku: SudokuGrid
         do {
-            // This is a very costly generator as it is unlikely to create work
             sudoku = ImmutableSudokuGrid.build {
-                // go row by row
-                for (y in 0 until 9) {
-                    val row = randomRow()
-                    for (x in 0 until 9) {
-                        set(x, y, row[x])
+                val positions = ArrayList<Pos>(81)
+                for(x in 0 until 9) {
+                    for (y in 0 until 9) {
+                        positions.add(Pos(x, y))
                     }
+                }
+                positions.shuffle(random)
+                val queue = ArrayDeque(positions)
+                while (queue.isNotEmpty()) {
+                    val pos = queue.last
+                    var isValid: Boolean
+                    do {
+                        val value = random.nextInt(9) + 1
+                        set(pos.x, pos.y, value)
+                        isValid = this.build().isValid(mustBeComplete = false)
+                    } while (!isValid)
+                    queue.removeLast()
                 }
             }
 
