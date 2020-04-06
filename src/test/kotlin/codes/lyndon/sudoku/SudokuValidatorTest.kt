@@ -2,6 +2,7 @@ package codes.lyndon.sudoku
 
 import codes.lyndon.sudoku.TestUtils.validSudokuGrid
 import codes.lyndon.sudoku.generator.BadGenerator
+import codes.lyndon.sudoku.immutable.ImmutableSudokuGrid
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 

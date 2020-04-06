@@ -1,5 +1,6 @@
 package codes.lyndon.sudoku
 
+import codes.lyndon.sudoku.immutable.ImmutableSudokuGrid
 import java.io.File
 import java.io.FileReader
 import java.io.InputStream

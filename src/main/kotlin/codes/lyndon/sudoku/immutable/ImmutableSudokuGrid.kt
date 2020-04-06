@@ -1,5 +1,9 @@
-package codes.lyndon.sudoku
+package codes.lyndon.sudoku.immutable
 
+import codes.lyndon.sudoku.CellGroup
+import codes.lyndon.sudoku.IllegalSizedSudoku
+import codes.lyndon.sudoku.SudokuCell
+import codes.lyndon.sudoku.SudokuGrid
 import codes.lyndon.sudoku.renderer.BasicTextRenderer
 import kotlin.streams.toList
 
@@ -72,9 +76,11 @@ class ImmutableSudokuGrid private constructor(
 
 
     companion object {
-        val emptySudoku = ImmutableSudokuGrid(emptyGrid())
+        val emptySudoku =
+            ImmutableSudokuGrid(emptyGrid())
 
-        fun builder(): Builder = Builder()
+        fun builder(): Builder =
+            Builder()
 
         fun builder(gridData: Array<Int?>): Builder =
             Builder(gridData.copyOf())
@@ -143,7 +149,8 @@ class ImmutableSudokuGrid private constructor(
             return this
         }
 
-        fun build(): ImmutableSudokuGrid = ImmutableSudokuGrid(gridData)
+        fun build(): ImmutableSudokuGrid =
+            ImmutableSudokuGrid(gridData)
 
         override fun toString(): String {
             return build().toString()

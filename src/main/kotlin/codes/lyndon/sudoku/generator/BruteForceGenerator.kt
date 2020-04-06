@@ -1,6 +1,7 @@
 package codes.lyndon.sudoku.generator
 
 import codes.lyndon.sudoku.*
+import codes.lyndon.sudoku.immutable.ImmutableSudokuGrid
 import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.random.Random

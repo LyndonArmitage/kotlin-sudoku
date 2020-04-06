@@ -1,5 +1,7 @@
 package codes.lyndon.sudoku
 
+import codes.lyndon.sudoku.immutable.ImmutableSudokuGrid
+
 object TestUtils {
 
     val validSudokuNumbers: Array<Int?> = arrayOf(

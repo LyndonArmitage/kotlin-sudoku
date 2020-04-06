@@ -1,6 +1,6 @@
 package codes.lyndon.sudoku.generator
 
-import codes.lyndon.sudoku.ImmutableSudokuGrid
+import codes.lyndon.sudoku.immutable.ImmutableSudokuGrid
 import codes.lyndon.sudoku.SudokuGenerator
 import codes.lyndon.sudoku.SudokuGrid
 
