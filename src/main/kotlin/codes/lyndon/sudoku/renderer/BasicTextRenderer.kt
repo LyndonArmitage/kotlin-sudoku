@@ -16,8 +16,8 @@ object BasicTextRenderer : SudokuRenderer<String> {
     }
 
     private fun render(sudoku: SudokuGrid, builder: StringBuilder): String {
-        for (x in 0 until SudokuGrid.cellsPerRow) {
-            for (y in 0 until SudokuGrid.cellsPerColumn) {
+        for (y in 0 until SudokuGrid.cellsPerRow) {
+            for (x in 0 until SudokuGrid.cellsPerColumn) {
                 val value = sudoku[x, y]
                 val string = if (value == null) {
                     " "

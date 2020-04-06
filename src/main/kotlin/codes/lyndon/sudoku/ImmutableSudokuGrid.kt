@@ -55,6 +55,22 @@ class ImmutableSudokuGrid private constructor(
         return BasicTextRenderer.render(this)
     }
 
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
+
+        other as ImmutableSudokuGrid
+
+        if (!gridData.contentEquals(other.gridData)) return false
+
+        return true
+    }
+
+    override fun hashCode(): Int {
+        return gridData.contentHashCode()
+    }
+
+
     companion object {
         val emptySudoku = ImmutableSudokuGrid(emptyGrid())
 
