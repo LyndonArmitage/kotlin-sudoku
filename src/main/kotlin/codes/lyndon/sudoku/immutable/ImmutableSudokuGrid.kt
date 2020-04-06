@@ -5,7 +5,6 @@ import codes.lyndon.sudoku.IllegalSizedSudoku
 import codes.lyndon.sudoku.SudokuCell
 import codes.lyndon.sudoku.SudokuGrid
 import codes.lyndon.sudoku.renderer.BasicTextRenderer
-import kotlin.streams.toList
 
 class ImmutableSudokuGrid private constructor(
     grid: Array<Int?>
@@ -107,31 +106,6 @@ class ImmutableSudokuGrid private constructor(
         private fun emptyGrid(): Array<Int?> = Array(
             SudokuGrid.cellsPerRow * SudokuGrid.cellsPerColumn
         ) { null }
-    }
-
-    private class ImmutableCellGroup internal constructor(
-        cells: Collection<SudokuCell>
-    ) : CellGroup {
-        override val cells = cells.toSet()
-
-        override val presentNumbers: Set<Int> by lazy {
-            this.cells
-                .mapNotNull { it.value }
-                .stream()
-                .mapToInt { it }
-                .toList()
-                .toSet()
-        }
-
-        override val numbersCount: Map<Int?, Int> by lazy {
-            val map = HashMap<Int?, Int>(9)
-            for (cell in cells) {
-                val value = cell.value
-                map[value] = map.getOrPut(value) { 0 } + 1
-            }
-
-            map.toMap()
-        }
     }
 
 
