@@ -4,8 +4,7 @@ import codes.lyndon.sudoku.CellGroup
 import codes.lyndon.sudoku.SudokuCell
 import codes.lyndon.sudoku.SudokuGrid
 import codes.lyndon.sudoku.immutable.ImmutableCellGroup
-import codes.lyndon.sudoku.immutable.ImmutableSudokuGrid
-import codes.lyndon.sudoku.renderer.BasicTextRenderer
+import codes.lyndon.sudoku.renderer.PrettyTextRenderer
 
 class HashMapSudokuGrid : MutableSudokuGrid<ImmutableCellGroup> {
 
@@ -53,7 +52,7 @@ class HashMapSudokuGrid : MutableSudokuGrid<ImmutableCellGroup> {
         return ImmutableCellGroup(cells)
     }
 
-    override fun toString(): String = BasicTextRenderer.render(this)
+    override fun toString(): String = PrettyTextRenderer.render(this)
 
     private fun posFor(x: Int, y: Int): Pos =
         Pos(x, y) // TODO: Pool x,y coordinates

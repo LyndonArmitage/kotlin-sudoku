@@ -3,7 +3,7 @@ package codes.lyndon.sudoku.immutable
 import codes.lyndon.sudoku.CellGroup
 import codes.lyndon.sudoku.SudokuCell
 import codes.lyndon.sudoku.SudokuGrid
-import codes.lyndon.sudoku.renderer.BasicTextRenderer
+import codes.lyndon.sudoku.renderer.PrettyTextRenderer
 
 class ImmutableSudokuGrid private constructor(
     grid: Array<Int?>
@@ -54,7 +54,7 @@ class ImmutableSudokuGrid private constructor(
     }
 
     override fun toString(): String {
-        return BasicTextRenderer.render(this)
+        return PrettyTextRenderer.render(this)
     }
 
     override fun equals(other: Any?): Boolean {
