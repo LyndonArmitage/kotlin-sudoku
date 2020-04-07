@@ -5,6 +5,7 @@ import codes.lyndon.sudoku.immutable.ImmutableCellGroup
 import codes.lyndon.sudoku.mutable.HashMapSudokuGrid
 import codes.lyndon.sudoku.mutable.MutableSudokuGrid
 import codes.lyndon.sudoku.mutable.Pos
+import mu.KotlinLogging
 import java.util.*
 import kotlin.collections.HashMap
 import kotlin.random.Random
@@ -14,6 +15,7 @@ private typealias Possibles = MutableSet<Int>
 private fun Possibles.pick(random: Random): Int =
     this.toList()[random.nextInt(this.size)]
 
+private val logger = KotlinLogging.logger {}
 class SolvingGenerator(
     private val random: Random = Random(1L)
 ) : SudokuGenerator {
@@ -44,11 +46,11 @@ class SolvingGenerator(
             val pos = randomEmptyPos()
             var possibles = possiblesGrid[pos]
             while (possibles.isNullOrEmpty()) {
-                System.err.println("No possibilities for $pos:\n$actualGrid")
+                logger.debug { "No possibilities for $pos:\n$actualGrid" }
                 // reset last set cells until can set something here
                 val previousPos: Pos = popLastCellChangedAffecting(pos)
                 val previousValue = actualGrid[previousPos.x, previousPos.y]
-                System.err.println("Reset last cell set: $previousPos = $previousValue")
+                logger.debug { "Reset last cell set: $previousPos = $previousValue" }
                 actualGrid[previousPos.x, previousPos.y] = null
                 recalculatePossiblesAfterChangeAt(previousPos)
                 possibles = possiblesGrid[pos]
