@@ -28,6 +28,10 @@ class BruteForceGenerator(
                 val pos = queue.last
                 val possibleValues = randomOrderedNumbers()
                 val (x, y) = pos
+                if (sudoku[x, y] != null) {
+                    queue.removeLast()
+                    continue
+                }
                 possibleValues.removeAll(
                     sudoku.boxForCellAt(x, y).presentNumbers
                 )
@@ -41,9 +45,25 @@ class BruteForceGenerator(
                     // Problem persists that we end up making a lot more
                     // bad configurations than good here.
                     // At least we are getting closer though
-                    System.err.println(
-                        "Possible values exhausted for cell $x,$y:\n$sudoku"
-                    )
+                    //System.err.println("Possible values exhausted for cell $x,$y:\n$sudoku")
+                    // TODO: Fix Me
+                    // Possible bodge is to wipe out the box this cell is in of
+                    // all values and re-add the positions for generation.
+                    // There will be no guarantees this will fix anything but it
+                    // is a dumb way of rerolling when stuck in a corner.
+                    val startOfBoxX = SudokuGrid.getBoxX(x) * 3
+                    val startOfBoxY = SudokuGrid.getBoxY(y) * 3
+
+                    for(wipeX in startOfBoxX until startOfBoxX + 3) {
+                        for(wipeY in startOfBoxY until startOfBoxY + 3) {
+                            if (wipeX == x && wipeY == y) {
+                                continue
+                            }
+                            queue.add(Pos(wipeX, wipeY))
+                            sudoku[wipeX, wipeY] = null
+                        }
+                    }
+                    continue
                 }
                 val value = possibleValues.first()
                 sudoku[pos.x, pos.y] = value

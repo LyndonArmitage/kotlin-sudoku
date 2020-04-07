@@ -12,15 +12,13 @@ class HashMapSudokuGrid : MutableSudokuGrid<ImmutableCellGroup> {
         SudokuGrid.cellsPerColumn * SudokuGrid.cellsPerRow
     )
 
-    private data class Pos(val x: Int, val y: Int)
-
     override fun setCellAt(x: Int, y: Int, value: Int?) {
-        val pos = posFor(x, y)
+        val pos = Pos.of(x, y)
         map[pos] = value
     }
 
     override fun cellAt(x: Int, y: Int): Int? {
-        val pos = posFor(x, y)
+        val pos = Pos.of(x, y)
         return map.getOrDefault(pos, null)
     }
 
@@ -53,9 +51,6 @@ class HashMapSudokuGrid : MutableSudokuGrid<ImmutableCellGroup> {
     }
 
     override fun toString(): String = PrettyTextRenderer.render(this)
-
-    private fun posFor(x: Int, y: Int): Pos =
-        Pos(x, y) // TODO: Pool x,y coordinates
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true

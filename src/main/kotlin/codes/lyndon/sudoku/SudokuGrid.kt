@@ -6,6 +6,8 @@ interface SudokuGrid<out CellGroupType : CellGroup> {
 
     operator fun get(x: Int, y: Int): Int? = cellAt(x, y)
 
+    fun isSet(x: Int, y: Int): Boolean = cellAt(x, y) != null
+
     fun boxAt(boxX: Int, boxY: Int): CellGroupType
 
     fun boxForCellAt(x: Int, y: Int): CellGroupType =

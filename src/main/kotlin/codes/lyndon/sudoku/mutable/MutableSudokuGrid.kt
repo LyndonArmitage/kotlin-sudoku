@@ -10,6 +10,14 @@ interface MutableSudokuGrid<CellGroupType : CellGroup> : SudokuGrid<CellGroupTyp
 
     operator fun set(x: Int, y: Int, value: Int?) = setCellAt(x, y, value)
 
+    fun clear() {
+        for (x in 0 until SudokuGrid.cellsPerRow) {
+            for (y in 0 until SudokuGrid.cellsPerColumn) {
+                setCellAt(x, y, null)
+            }
+        }
+    }
+
     fun toImmutable(): ImmutableSudokuGrid {
         val self = this
         return ImmutableSudokuGrid.build {

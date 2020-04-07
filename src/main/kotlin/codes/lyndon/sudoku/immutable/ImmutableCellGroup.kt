@@ -2,6 +2,7 @@ package codes.lyndon.sudoku.immutable
 
 import codes.lyndon.sudoku.CellGroup
 import codes.lyndon.sudoku.SudokuCell
+import codes.lyndon.sudoku.mutable.Pos
 import kotlin.streams.toList
 
 class ImmutableCellGroup constructor(
@@ -26,5 +27,9 @@ class ImmutableCellGroup constructor(
         }
 
         map.toMap()
+    }
+
+    override val cellPositions: Set<Pos> by lazy {
+        cells.map { Pos.of(it.x, it.y) }.toSet()
     }
 }

@@ -1,8 +1,12 @@
 package codes.lyndon.sudoku
 
+import codes.lyndon.sudoku.mutable.Pos
+
 interface CellGroup {
 
     val cells: Set<SudokuCell>
+
+    val cellPositions: Set<Pos>
 
     val presentNumbers: Set<Int>
 
