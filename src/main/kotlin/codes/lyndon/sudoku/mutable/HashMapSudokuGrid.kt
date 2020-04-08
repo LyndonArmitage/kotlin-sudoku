@@ -1,6 +1,6 @@
 package codes.lyndon.sudoku.mutable
 
-import codes.lyndon.sudoku.CellGroup
+import codes.lyndon.sudoku.Sudoku
 import codes.lyndon.sudoku.SudokuCell
 import codes.lyndon.sudoku.SudokuGrid
 import codes.lyndon.sudoku.immutable.ImmutableCellGroup
@@ -69,7 +69,7 @@ class HashMapSudokuGrid : MutableSudokuGrid<ImmutableCellGroup> {
 
     companion object {
 
-        fun copyFrom(other: SudokuGrid<CellGroup>): HashMapSudokuGrid {
+        fun copyFrom(other: Sudoku): HashMapSudokuGrid {
             val newGrid = HashMapSudokuGrid()
             for (x in 0 until SudokuGrid.cellsPerRow) {
                 for (y in 0 until SudokuGrid.cellsPerColumn) {

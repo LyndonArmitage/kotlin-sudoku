@@ -10,13 +10,13 @@ object SudokuWriter {
 
     private val renderer = BasicTextRenderer
 
-    fun write(sudoku: SudokuGrid<CellGroup>, file: File) =
+    fun write(sudoku: Sudoku, file: File) =
         write(sudoku, file.bufferedWriter())
 
-    fun write(sudoku: SudokuGrid<CellGroup>, out: OutputStream) =
+    fun write(sudoku: Sudoku, out: OutputStream) =
         write(sudoku, BufferedWriter(OutputStreamWriter(out)))
 
-    fun write(sudoku: SudokuGrid<CellGroup>, writer: Writer) = writer.use {
+    fun write(sudoku: Sudoku, writer: Writer) = writer.use {
         val asString = renderer.render(sudoku)
         it.write(asString)
     }

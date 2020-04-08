@@ -1,13 +1,12 @@
 package codes.lyndon.sudoku.renderer
 
-import codes.lyndon.sudoku.CellGroup
+import codes.lyndon.sudoku.Sudoku
 import codes.lyndon.sudoku.SudokuGrid
 import codes.lyndon.sudoku.SudokuRenderer
-import java.lang.StringBuilder
 
 object PrettyTextRenderer : SudokuRenderer<String> {
 
-    override fun render(sudoku: SudokuGrid<CellGroup>): String {
+    override fun render(sudoku: Sudoku): String {
         val stringBuilder = StringBuilder(
             (SudokuGrid.cellsPerRow * SudokuGrid.cellsPerColumn) +
                     SudokuGrid.cellsPerColumn
@@ -16,7 +15,7 @@ object PrettyTextRenderer : SudokuRenderer<String> {
         return render(sudoku, stringBuilder)
     }
 
-    private fun render(sudoku: SudokuGrid<CellGroup>, builder: StringBuilder): String {
+    private fun render(sudoku: Sudoku, builder: StringBuilder): String {
         builder.append("┌───┬───┬───┐").appendln()
         for (y in 0 until SudokuGrid.cellsPerRow) {
             if(y != 0 && y % 3 == 0) {

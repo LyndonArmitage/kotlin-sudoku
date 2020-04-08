@@ -12,7 +12,7 @@ class BruteForceGenerator(
 
     private data class Pos(val x: Int, val y: Int)
 
-    override fun generate(): SudokuGrid<CellGroup> {
+    override fun generate(): Sudoku {
         val sudoku = HashMapSudokuGrid()
         var count: Long = 0L
         do {

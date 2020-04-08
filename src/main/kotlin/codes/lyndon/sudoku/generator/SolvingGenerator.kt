@@ -35,7 +35,7 @@ class SolvingGenerator(
         }
     }
 
-    override fun generate(): SudokuGrid<CellGroup> {
+    override fun generate(): Sudoku {
         reset()
 
         // pick empty cell,

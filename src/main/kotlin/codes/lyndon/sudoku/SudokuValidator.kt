@@ -1,6 +1,6 @@
 package codes.lyndon.sudoku
 
-fun SudokuGrid<CellGroup>.isValid(mustBeComplete: Boolean = false): Boolean {
+fun Sudoku.isValid(mustBeComplete: Boolean = false): Boolean {
 
     for (y in 0 until SudokuGrid.cellsPerColumn) {
         if (!this.rowAt(y).isValid(mustBeComplete)) {

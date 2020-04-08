@@ -1,6 +1,6 @@
 package codes.lyndon.sudoku.immutable
 
-import codes.lyndon.sudoku.CellGroup
+import codes.lyndon.sudoku.Sudoku
 import codes.lyndon.sudoku.SudokuCell
 import codes.lyndon.sudoku.SudokuGrid
 import codes.lyndon.sudoku.renderer.PrettyTextRenderer
@@ -83,7 +83,7 @@ class ImmutableSudokuGrid private constructor(
         fun builder(gridData: Array<Int?>): Builder =
             Builder(gridData.copyOf())
 
-        fun builder(baseSudoku: SudokuGrid<CellGroup>): Builder {
+        fun builder(baseSudoku: Sudoku): Builder {
             val grid = emptyGrid()
             for (x in 0 until SudokuGrid.cellsPerRow) {
                 for (y in 0 until SudokuGrid.cellsPerColumn) {

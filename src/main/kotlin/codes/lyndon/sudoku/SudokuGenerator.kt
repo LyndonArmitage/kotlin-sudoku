@@ -2,5 +2,5 @@ package codes.lyndon.sudoku
 
 interface SudokuGenerator {
 
-    fun generate(): SudokuGrid<CellGroup>
+    fun generate(): Sudoku
 }

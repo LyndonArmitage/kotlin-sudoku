@@ -29,13 +29,13 @@ object SudokuReader {
         println(grid)
     }
 
-    fun read(file: File): SudokuGrid<CellGroup> =
+    fun read(file: File): Sudoku =
         read(FileReader(file, StandardCharsets.UTF_8))
 
-    fun read(input: InputStream): SudokuGrid<CellGroup> =
+    fun read(input: InputStream): Sudoku =
         read(input.bufferedReader())
 
-    fun read(reader: Reader): SudokuGrid<CellGroup> = reader.use {
+    fun read(reader: Reader): Sudoku = reader.use {
         val limit = 81
         val numbers = ArrayList<Int?>(limit)
         val scanner = Scanner(it)
