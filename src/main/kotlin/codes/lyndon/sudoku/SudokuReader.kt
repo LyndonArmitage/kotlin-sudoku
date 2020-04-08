@@ -45,7 +45,7 @@ object SudokuReader {
 
             val currentSize = numbers.size
             val extraNumbers = limit - currentSize - numbersInString.size
-            if (extraNumbers > 0) {
+            if (extraNumbers > 0 && numbersInString.size > limit) {
                 numbers.addAll(
                     numbersInString.subList(0, numbersInString.size - extraNumbers)
                 )
