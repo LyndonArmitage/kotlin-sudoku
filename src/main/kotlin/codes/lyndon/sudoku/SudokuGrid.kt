@@ -1,5 +1,7 @@
 package codes.lyndon.sudoku
 
+typealias Sudoku = SudokuGrid<CellGroup>
+
 interface SudokuGrid<out CellGroupType : CellGroup> {
 
     fun cellAt(x: Int, y: Int): Int?
