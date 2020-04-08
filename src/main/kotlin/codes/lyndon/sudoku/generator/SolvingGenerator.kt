@@ -4,7 +4,7 @@ import codes.lyndon.sudoku.*
 import codes.lyndon.sudoku.immutable.ImmutableCellGroup
 import codes.lyndon.sudoku.mutable.HashMapSudokuGrid
 import codes.lyndon.sudoku.mutable.MutableSudokuGrid
-import codes.lyndon.sudoku.mutable.Pos
+import codes.lyndon.sudoku.Pos
 import mu.KotlinLogging
 import java.util.*
 import kotlin.collections.HashMap

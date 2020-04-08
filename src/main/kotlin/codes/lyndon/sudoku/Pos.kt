@@ -1,6 +1,5 @@
-package codes.lyndon.sudoku.mutable
+package codes.lyndon.sudoku
 
-import codes.lyndon.sudoku.Sudoku
 import java.util.concurrent.ConcurrentHashMap
 
 class Pos private constructor(val x: Int, val y: Int) {
@@ -11,8 +10,8 @@ class Pos private constructor(val x: Int, val y: Int) {
 
         init {
             // create a fixed set of shared objects for all common x,y coordinates
-            for (x in 0 until Sudoku.cellsPerRow) {
-                for (y in 0 until Sudoku.cellsPerColumn) {
+            for (x in 0 until SudokuGrid.cellsPerRow) {
+                for (y in 0 until SudokuGrid.cellsPerColumn) {
                     val pos = Pos(x, y)
                     commonObjectPool[Pair(x, y)] = pos
                 }

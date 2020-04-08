@@ -1,5 +1,6 @@
 package codes.lyndon.sudoku.mutable
 
+import codes.lyndon.sudoku.Pos
 import codes.lyndon.sudoku.Sudoku
 import codes.lyndon.sudoku.SudokuCell
 import codes.lyndon.sudoku.SudokuGrid

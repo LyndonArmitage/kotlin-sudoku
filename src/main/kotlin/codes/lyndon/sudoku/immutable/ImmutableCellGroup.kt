@@ -2,7 +2,7 @@ package codes.lyndon.sudoku.immutable
 
 import codes.lyndon.sudoku.CellGroup
 import codes.lyndon.sudoku.SudokuCell
-import codes.lyndon.sudoku.mutable.Pos
+import codes.lyndon.sudoku.Pos
 import kotlin.streams.toList
 
 class ImmutableCellGroup constructor(
